@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wrv-qP-aTG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wrv-qP-aTG">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,14 +16,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome To" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="H6i-i2-YX7">
-                                <rect key="frame" x="22" y="151" width="185.33333333333334" height="39.666666666666657"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="H6i-i2-YX7">
+                                <rect key="frame" x="22" y="151" width="180.33333333333334" height="39.666666666666657"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="34"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SightGuide" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VOB-i4-rAk">
-                                <rect key="frame" x="22" y="190.66666666666666" width="253" height="58"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sight Guide" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VOB-i4-rAk">
+                                <rect key="frame" x="22" y="190.66666666666666" width="266" height="57.333333333333343"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="48"/>
                                 <color key="textColor" red="0.24248343796441052" green="0.24248343796441052" blue="0.24248343796441052" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
@@ -34,9 +34,15 @@
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap and Hold on screen to continue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1c0-pW-PhE">
+                                <rect key="frame" x="96" y="803" width="201" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="H6i-i2-YX7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="48" id="37M-9q-bka"/>
@@ -45,18 +51,28 @@
                             <constraint firstItem="w0T-pI-gtg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="QbK-UG-pfA"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="w0T-pI-gtg" secondAttribute="trailing" constant="40" id="SAb-wd-Ibg"/>
                             <constraint firstItem="w0T-pI-gtg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="VOs-fT-mQe"/>
+                            <constraint firstItem="1c0-pW-PhE" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="bAO-H5-vz8"/>
                             <constraint firstItem="w0T-pI-gtg" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="bsW-BJ-mic"/>
+                            <constraint firstItem="1c0-pW-PhE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fFl-fj-Kna"/>
                             <constraint firstItem="VOB-i4-rAk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="22" id="jIz-d6-vUn"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="708-Mw-UNk"/>
                     <connections>
+                        <outlet property="SightGuide" destination="VOB-i4-rAk" id="MmH-Yq-MTl"/>
                         <outlet property="holdButton" destination="RDK-H4-Fxo" id="put-Dd-OsJ"/>
-                        <segue destination="o2q-NS-PBv" kind="show" id="ITf-Dd-upA"/>
+                        <outlet property="infoText" destination="w0T-pI-gtg" id="AfU-oT-0F6"/>
+                        <outlet property="tapText" destination="1c0-pW-PhE" id="L9g-9c-vfw"/>
+                        <outlet property="welcomeText" destination="H6i-i2-YX7" id="lDE-sI-PyY"/>
+                        <segue destination="o2q-NS-PBv" kind="show" identifier="ShowNextVC" id="px4-fz-okM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="RDK-H4-Fxo"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="RDK-H4-Fxo">
+                    <connections>
+                        <action selector="handleLongPress:" destination="BYZ-38-t0r" id="cBy-KN-jyx"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="848.09160305343505" y="-17.605633802816904"/>
         </scene>
@@ -91,7 +107,6 @@
         <!--View Controller-->
         <scene sceneID="1G0-eC-sK2">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AHt-Og-g4r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="o2q-NS-PBv" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="q0P-cG-wMm">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
@@ -105,7 +120,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wtA-nt-AX7"/>
-                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="cKK-6b-Xmd" firstAttribute="leading" secondItem="wtA-nt-AX7" secondAttribute="leading" constant="22" id="4YR-U4-hNZ"/>
@@ -120,6 +135,7 @@
                         <segue destination="s1R-Py-g9x" kind="show" id="b2B-tA-nyT"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AHt-Og-g4r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <swipeGestureRecognizer direction="left" id="5Fl-Gv-Sgd">
                     <connections>
                         <segue destination="s1R-Py-g9x" kind="show" id="RuE-JF-3cq"/>
@@ -144,7 +160,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="PsE-fa-R28"/>
-                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="bNg-o5-9g3" firstAttribute="leading" secondItem="PsE-fa-R28" secondAttribute="leading" constant="22" id="H19-IE-axg"/>
@@ -152,6 +168,7 @@
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="fPF-Xy-Q72" appends="YES" id="9CL-KF-vyS"/>
+                            <outletCollection property="gestureRecognizers" destination="dUp-7Z-mVK" appends="YES" id="gHv-Hd-29x"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="PbI-5p-R06"/>
@@ -160,7 +177,18 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TlC-8S-lCA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="right" id="fPF-Xy-Q72"/>
+                <exit id="i3F-zW-VOB" userLabel="Exit" sceneMemberID="exit"/>
+                <swipeGestureRecognizer direction="left" id="fPF-Xy-Q72">
+                    <connections>
+                        <action selector="handleRightSwipe:" destination="i3F-zW-VOB" id="MMC-OO-zHC"/>
+                        <segue destination="dmX-6w-4BD" kind="show" id="jVb-Hb-dSp"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="dUp-7Z-mVK">
+                    <connections>
+                        <segue destination="i3F-zW-VOB" kind="unwind" unwindAction="handleBackSwipeWithSegue:" id="jFZ-79-kyc"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2356" y="-18"/>
         </scene>
@@ -184,13 +212,21 @@
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap and Hold on screen to continue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SqM-go-vXi">
+                                <rect key="frame" x="96" y="803" width="201" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="MWl-db-t7v"/>
-                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="SqM-go-vXi" firstAttribute="bottom" secondItem="MWl-db-t7v" secondAttribute="bottom" id="AH4-MU-AJg"/>
                             <constraint firstItem="A9s-yy-rtV" firstAttribute="centerY" secondItem="xQt-uZ-eOy" secondAttribute="centerY" id="XxH-88-hPR"/>
                             <constraint firstItem="jgP-XY-UZ3" firstAttribute="top" secondItem="MWl-db-t7v" secondAttribute="top" constant="48" id="hcC-tD-8bG"/>
                             <constraint firstItem="A9s-yy-rtV" firstAttribute="centerX" secondItem="xQt-uZ-eOy" secondAttribute="centerX" id="mxd-P7-JZf"/>
+                            <constraint firstItem="SqM-go-vXi" firstAttribute="centerX" secondItem="xQt-uZ-eOy" secondAttribute="centerX" id="ohr-0e-7nZ"/>
                             <constraint firstItem="jgP-XY-UZ3" firstAttribute="leading" secondItem="MWl-db-t7v" secondAttribute="leading" constant="22" id="rEg-H9-SUc"/>
                         </constraints>
                     </view>
@@ -211,7 +247,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="V9v-If-gnw"/>
-                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="LFz-E3-B2A"/>
                 </viewController>
@@ -239,14 +275,12 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="8nL-5M-fWe"/>
         <segue reference="RuE-JF-3cq"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray6Color">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

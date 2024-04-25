@@ -104,10 +104,10 @@
             </objects>
             <point key="canvasLocation" x="-908" y="-18"/>
         </scene>
-        <!--View Controller-->
+        <!--On Track View Controller-->
         <scene sceneID="1G0-eC-sK2">
             <objects>
-                <viewController id="o2q-NS-PBv" sceneMemberID="viewController">
+                <viewController id="o2q-NS-PBv" customClass="onTrackViewController" customModule="SightGuide" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="q0P-cG-wMm">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -144,10 +144,10 @@
             </objects>
             <point key="canvasLocation" x="1628.2442748091603" y="-18.30985915492958"/>
         </scene>
-        <!--View Controller-->
+        <!--Off Track View Controller-->
         <scene sceneID="lbo-ay-93k">
             <objects>
-                <viewController id="s1R-Py-g9x" sceneMemberID="viewController">
+                <viewController id="s1R-Py-g9x" customClass="offTrackViewController" customModule="SightGuide" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xyr-4t-JQA">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -192,10 +192,10 @@
             </objects>
             <point key="canvasLocation" x="2356" y="-18"/>
         </scene>
-        <!--View Controller-->
+        <!--Haptic Guide Ends View Controller-->
         <scene sceneID="7pe-6l-gV3">
             <objects>
-                <viewController id="dmX-6w-4BD" sceneMemberID="viewController">
+                <viewController id="dmX-6w-4BD" customClass="hapticGuideEndsViewController" customModule="SightGuide" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xQt-uZ-eOy">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

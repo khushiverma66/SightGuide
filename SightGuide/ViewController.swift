@@ -38,12 +38,12 @@ class ViewController: UIViewController {
 //            welcomeText.text = "Welcome To"
 //            SightGuide.text = "Sight Guide"
             speak(text: "welcome to Sight Guide")
-            timer = Timer.scheduledTimer(timeInterval: 4.0, target: self, selector: #selector(updateText), userInfo: nil, repeats: false)
+            timer = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(updateText), userInfo: nil, repeats: false)
         } else {
 //            infoText.text = "You will now be experiencing how the haptics will work to navigate you"
             speak(text: "You will now be experiencing how the haptics will work to navigate you")
             // Introduce a delay before speaking tapText
-                    let delay = 5.0 // Adjust this value as needed (in seconds)
+                    let delay = 4.0 // Adjust this value as needed (in seconds)
                     DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
 //                        self.tapText.text = "Tap and Hold on screen to continue"
                         self.speak(text: "Tap and Hold on screen to continue")
@@ -62,6 +62,10 @@ class ViewController: UIViewController {
         utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
         synthesizer.speak(utterance)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            synthesizer.stopSpeaking(at: .immediate)
+        }
 }
 
                                                                                                                                                                                  

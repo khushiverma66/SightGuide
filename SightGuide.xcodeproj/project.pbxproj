@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		26A476C32BDA5D10000709A8 /* cameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A476C22BDA5D10000709A8 /* cameraViewController.swift */; };
+		26A476C52BDA670B000709A8 /* offTrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A476C42BDA670B000709A8 /* offTrackViewController.swift */; };
+		26A476C72BDA6786000709A8 /* onTrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A476C62BDA6786000709A8 /* onTrackViewController.swift */; };
+		26A476C92BDA67B5000709A8 /* hapticGuideEndsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A476C82BDA67B5000709A8 /* hapticGuideEndsViewController.swift */; };
 		3FFCECAE2BC3FE3600790386 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFCECAD2BC3FE3600790386 /* AppDelegate.swift */; };
 		3FFCECB02BC3FE3600790386 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFCECAF2BC3FE3600790386 /* SceneDelegate.swift */; };
 		3FFCECB22BC3FE3600790386 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFCECB12BC3FE3600790386 /* ViewController.swift */; };
@@ -38,6 +41,9 @@
 
 /* Begin PBXFileReference section */
 		26A476C22BDA5D10000709A8 /* cameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cameraViewController.swift; sourceTree = "<group>"; };
+		26A476C42BDA670B000709A8 /* offTrackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = offTrackViewController.swift; sourceTree = "<group>"; };
+		26A476C62BDA6786000709A8 /* onTrackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onTrackViewController.swift; sourceTree = "<group>"; };
+		26A476C82BDA67B5000709A8 /* hapticGuideEndsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hapticGuideEndsViewController.swift; sourceTree = "<group>"; };
 		3FFCECAA2BC3FE3600790386 /* SightGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SightGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FFCECAD2BC3FE3600790386 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3FFCECAF2BC3FE3600790386 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +110,9 @@
 				3FFCECAD2BC3FE3600790386 /* AppDelegate.swift */,
 				3FFCECAF2BC3FE3600790386 /* SceneDelegate.swift */,
 				3FFCECB12BC3FE3600790386 /* ViewController.swift */,
+				26A476C42BDA670B000709A8 /* offTrackViewController.swift */,
+				26A476C62BDA6786000709A8 /* onTrackViewController.swift */,
+				26A476C82BDA67B5000709A8 /* hapticGuideEndsViewController.swift */,
 				26A476C22BDA5D10000709A8 /* cameraViewController.swift */,
 				3FFCECB32BC3FE3600790386 /* Main.storyboard */,
 				3FFCECB62BC3FE3700790386 /* Assets.xcassets */,
@@ -261,6 +270,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26A476C92BDA67B5000709A8 /* hapticGuideEndsViewController.swift in Sources */,
+				26A476C52BDA670B000709A8 /* offTrackViewController.swift in Sources */,
+				26A476C72BDA6786000709A8 /* onTrackViewController.swift in Sources */,
 				3FFCECB22BC3FE3600790386 /* ViewController.swift in Sources */,
 				26A476C32BDA5D10000709A8 /* cameraViewController.swift in Sources */,
 				3FFCECAE2BC3FE3600790386 /* AppDelegate.swift in Sources */,

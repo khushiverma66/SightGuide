@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wrv-qP-aTG">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SightGuide" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome To" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="H6i-i2-YX7">
+                                <rect key="frame" x="22" y="151" width="185.33333333333334" height="39.666666666666657"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="34"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SightGuide" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VOB-i4-rAk">
+                                <rect key="frame" x="22" y="190.66666666666666" width="253" height="58"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="48"/>
+                                <color key="textColor" red="0.24248343796441052" green="0.24248343796441052" blue="0.24248343796441052" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You will now be experiencing how the haptics will work to navigate you" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w0T-pI-gtg">
+                                <rect key="frame" x="40" y="407.33333333333331" width="313" height="37.333333333333314"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="H6i-i2-YX7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="48" id="37M-9q-bka"/>
+                            <constraint firstItem="H6i-i2-YX7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="22" id="5fk-G1-9Bn"/>
+                            <constraint firstItem="VOB-i4-rAk" firstAttribute="top" secondItem="H6i-i2-YX7" secondAttribute="bottom" id="E7T-8P-OqZ"/>
+                            <constraint firstItem="w0T-pI-gtg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="QbK-UG-pfA"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="w0T-pI-gtg" secondAttribute="trailing" constant="40" id="SAb-wd-Ibg"/>
+                            <constraint firstItem="w0T-pI-gtg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="VOs-fT-mQe"/>
+                            <constraint firstItem="w0T-pI-gtg" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="bsW-BJ-mic"/>
+                            <constraint firstItem="VOB-i4-rAk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="22" id="jIz-d6-vUn"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="708-Mw-UNk"/>
+                    <connections>
+                        <outlet property="holdButton" destination="RDK-H4-Fxo" id="put-Dd-OsJ"/>
+                        <segue destination="o2q-NS-PBv" kind="show" id="ITf-Dd-upA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="RDK-H4-Fxo"/>
+            </objects>
+            <point key="canvasLocation" x="848.09160305343505" y="-17.605633802816904"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="2l8-6Y-KK7">
+            <objects>
+                <viewController id="D2p-iY-2JI" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qAT-OQ-NQx">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SightGuide" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Dw-Le-Aht">
+                                <rect key="frame" x="154.33333333333334" y="416" width="84.333333333333343" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="hMm-SS-0S5"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="9Dw-Le-Aht" firstAttribute="centerY" secondItem="qAT-OQ-NQx" secondAttribute="centerY" id="EMB-aN-vYh"/>
+                            <constraint firstItem="9Dw-Le-Aht" firstAttribute="top" secondItem="hMm-SS-0S5" secondAttribute="top" constant="357" id="Xyu-Bj-MWK"/>
+                            <constraint firstItem="9Dw-Le-Aht" firstAttribute="centerX" secondItem="qAT-OQ-NQx" secondAttribute="centerX" id="x8y-Ir-eOa"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E3U-zk-BD5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-908" y="-18"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="1G0-eC-sK2">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AHt-Og-g4r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController id="o2q-NS-PBv" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="q0P-cG-wMm">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="On Track" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cKK-6b-Xmd">
+                                <rect key="frame" x="22" y="151" width="137" height="40"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="34"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="wtA-nt-AX7"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="cKK-6b-Xmd" firstAttribute="leading" secondItem="wtA-nt-AX7" secondAttribute="leading" constant="22" id="4YR-U4-hNZ"/>
+                            <constraint firstItem="cKK-6b-Xmd" firstAttribute="top" secondItem="wtA-nt-AX7" secondAttribute="top" constant="48" id="TPC-KO-yTc"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="5Fl-Gv-Sgd" appends="YES" id="FvI-uO-JLG"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" id="czp-n8-QWC"/>
+                    <connections>
+                        <segue destination="s1R-Py-g9x" kind="show" id="b2B-tA-nyT"/>
+                    </connections>
+                </viewController>
+                <swipeGestureRecognizer direction="left" id="5Fl-Gv-Sgd">
+                    <connections>
+                        <segue destination="s1R-Py-g9x" kind="show" id="RuE-JF-3cq"/>
+                    </connections>
+                </swipeGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1628.2442748091603" y="-18.30985915492958"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="lbo-ay-93k">
+            <objects>
+                <viewController id="s1R-Py-g9x" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xyr-4t-JQA">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Off Track" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bNg-o5-9g3">
+                                <rect key="frame" x="22" y="151" width="137" height="40"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="34"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="PsE-fa-R28"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="bNg-o5-9g3" firstAttribute="leading" secondItem="PsE-fa-R28" secondAttribute="leading" constant="22" id="H19-IE-axg"/>
+                            <constraint firstItem="bNg-o5-9g3" firstAttribute="top" secondItem="PsE-fa-R28" secondAttribute="top" constant="48" id="MpR-da-6PZ"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="fPF-Xy-Q72" appends="YES" id="9CL-KF-vyS"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" id="PbI-5p-R06"/>
+                    <connections>
+                        <segue destination="dmX-6w-4BD" kind="show" id="8nL-5M-fWe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TlC-8S-lCA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="fPF-Xy-Q72"/>
+            </objects>
+            <point key="canvasLocation" x="2356" y="-18"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="7pe-6l-gV3">
+            <objects>
+                <viewController id="dmX-6w-4BD" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xQt-uZ-eOy">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Haptic Guide Ends" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgP-XY-UZ3">
+                                <rect key="frame" x="22" y="151" width="286" height="40"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="34"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's start moving" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A9s-yy-rtV">
+                                <rect key="frame" x="132.33333333333337" y="416.66666666666669" width="128.66666666666663" height="18.666666666666686"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="MWl-db-t7v"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        <constraints>
+                            <constraint firstItem="A9s-yy-rtV" firstAttribute="centerY" secondItem="xQt-uZ-eOy" secondAttribute="centerY" id="XxH-88-hPR"/>
+                            <constraint firstItem="jgP-XY-UZ3" firstAttribute="top" secondItem="MWl-db-t7v" secondAttribute="top" constant="48" id="hcC-tD-8bG"/>
+                            <constraint firstItem="A9s-yy-rtV" firstAttribute="centerX" secondItem="xQt-uZ-eOy" secondAttribute="centerX" id="mxd-P7-JZf"/>
+                            <constraint firstItem="jgP-XY-UZ3" firstAttribute="leading" secondItem="MWl-db-t7v" secondAttribute="leading" constant="22" id="rEg-H9-SUc"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="z4w-Vk-xQw"/>
+                    <connections>
+                        <segue destination="Sds-lQ-vAf" kind="show" id="bgV-mh-U7n"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dHH-Bo-X1v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3063" y="-18"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Ozr-ZT-kRf">
+            <objects>
+                <viewController id="Sds-lQ-vAf" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2kj-ln-sQ3">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="V9v-If-gnw"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="LFz-E3-B2A"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oEy-2U-KNj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3824" y="-18"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="h6s-yY-8Ug">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wrv-qP-aTG" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="AP7-9e-0ZW">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="EUM-bY-y9m"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y00-2g-2AO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-78.625954198473281" y="-17.605633802816904"/>
+        </scene>
+    </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="RuE-JF-3cq"/>
+    </inferredMetricsTieBreakers>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

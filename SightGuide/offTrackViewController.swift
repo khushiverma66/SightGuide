@@ -42,7 +42,7 @@ class offTrackViewController: UIViewController {
     func displayTextAndSpeak() {
         if isFirstTextDisplayed {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                self.speak(text: "This haptic means that there's an obstacle in front of you and it'll intensify as you'll come near it")
+                self.speak(text: "This haptic means that there's an obstacle in front of you and it'll intensify according to the distance between you and object")
                 self.timer = Timer.scheduledTimer(timeInterval: 4.0, target: self, selector: #selector(self.updateText), userInfo: nil, repeats: false)
             }
         }

@@ -33,6 +33,8 @@ class onTrackViewController: UIViewController {
         
         animateButtonVisibility()
         
+        navigationItem.hidesBackButton = true
+        
     }
 
     func animateButtonVisibility() {

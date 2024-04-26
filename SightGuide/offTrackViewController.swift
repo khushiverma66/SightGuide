@@ -29,6 +29,8 @@ class offTrackViewController: UIViewController {
         addConcentricCircles()
         
         animateCircles()
+        
+        navigationItem.hidesBackButton = true
     }
 
 //    @IBAction func handleLongPress(_ sender: UILongPressGestureRecognizer) {

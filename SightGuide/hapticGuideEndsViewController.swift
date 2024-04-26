@@ -24,6 +24,8 @@ class hapticGuideEndsViewController: UIViewController {
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
         self.view.addGestureRecognizer(longPress)
         displayTextAndSpeak()
+        
+        navigationItem.hidesBackButton = true
     }
 
     @IBAction func handleLongPress(_ sender: UILongPressGestureRecognizer) {

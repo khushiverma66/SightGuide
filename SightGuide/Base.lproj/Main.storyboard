@@ -68,7 +68,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="RDK-H4-Fxo">
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="1" id="RDK-H4-Fxo">
                     <connections>
                         <action selector="handleLongPress:" destination="BYZ-38-t0r" id="cBy-KN-jyx"/>
                     </connections>
@@ -107,7 +107,7 @@
         <!--On Track View Controller-->
         <scene sceneID="1G0-eC-sK2">
             <objects>
-                <viewController id="o2q-NS-PBv" customClass="onTrackViewController" customModule="SightGuide" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="onTrackViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="o2q-NS-PBv" customClass="onTrackViewController" customModule="SightGuide" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="q0P-cG-wMm">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

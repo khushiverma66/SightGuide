@@ -16,6 +16,8 @@ class ViewController: UIViewController {
     var synthesizer = AVSpeechSynthesizer()
     var isFirstTextDisplayed:Bool = true
     var timer: Timer?
+    var feedbackGenerator: UIImpactFeedbackGenerator?
+    var displayLink: CADisplayLink?
     
     @IBOutlet var holdButton: UILongPressGestureRecognizer!
     
@@ -29,10 +31,39 @@ class ViewController: UIViewController {
     }
 
     @IBAction func handleLongPress(_ sender: UILongPressGestureRecognizer) {
-        if sender.state == .began {
-            performSegue(withIdentifier: "ShowNextVC", sender: self)
-        }
+        switch sender.state {
+               case .began:
+                   feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
+                   feedbackGenerator?.prepare()
+                   displayLink = CADisplayLink(target: self, selector: #selector(updateHapticIntensity))
+                   displayLink?.add(to: .current, forMode: .default)
+            
+                    //performSegue(withIdentifier: "ShowNextVC", sender: self)
+            if let storyboard = self.storyboard {
+                        let nextViewController = storyboard.instantiateViewController(withIdentifier: "onTrackViewController")
+                        self.navigationController?.pushViewController(nextViewController, animated: true)
+                    }
+               case .ended, .cancelled:
+                   feedbackGenerator = nil
+                   displayLink?.invalidate()
+               default:
+                   break
+               }
     }
+    
+    @objc func updateHapticIntensity() {
+            guard let feedbackGenerator = feedbackGenerator else { return }
+            let intensity = min(1.0, CGFloat(displayLink?.timestamp ?? 0.0) / 2.0) // Adjust the divisor to control the intensity change speed
+            feedbackGenerator.impactOccurred(intensity: intensity)
+        }
+
+    
+//    func triggerHapticFeedback() {
+//            let generator = UIImpactFeedbackGenerator(style: .medium)
+//            generator.prepare()
+//            generator.impactOccurred()
+//        }
+    
     
     
     @IBAction func handleBackSwipe(segue: UIStoryboardSegue) {

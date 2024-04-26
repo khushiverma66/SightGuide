@@ -47,13 +47,13 @@ class offTrackViewController: UIViewController {
                 self.speak(text: "This haptic means that there's an obstacle ahead and it'll intensify according to the distance between you and object")
                 
                 // Delay before speaking the second text
-                let delayBeforeSecondText = 8.0
+                let delayBeforeSecondText = 6.5
                 DispatchQueue.main.asyncAfter(deadline: .now() + delayBeforeSecondText) {
                     self.speak(text: "Swipe left to continue")
                 }
                 
                 // Delay before speaking the third text
-                let delayBeforeThirdText = delayBeforeSecondText + 4.0
+                let delayBeforeThirdText = delayBeforeSecondText + 3.0
                 DispatchQueue.main.asyncAfter(deadline: .now() + delayBeforeThirdText) {
                     self.speak(text: "Swipe right to go back")
                 }

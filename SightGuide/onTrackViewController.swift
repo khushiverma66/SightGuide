@@ -101,16 +101,17 @@ class onTrackViewController: UIViewController {
         if isFirstTextDisplayed {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 self.speak(text: "This haptic means that there is no obstacle in the way and you are going in the right direction")
-                self.timer = Timer.scheduledTimer(timeInterval: 4.0, target: self, selector: #selector(self.updateText), userInfo: nil, repeats: false)
+                // Delay before speaking the second text
+                let delayBeforeSecondText = 5.5
+                DispatchQueue.main.asyncAfter(deadline: .now() + delayBeforeSecondText) {
+                    self.speak(text: "Swipe left to continue")
+                }
+                
             }
         }
-        isFirstTextDisplayed = false
     }
 
-    @objc func updateText(){
-        //isFirstTextDisplayed.toggle()
-        displayTextAndSpeak()
-    }
+
     func speak(text: String){
         let utterance = AVSpeechUtterance(string: text)
         utterance.rate = 0.50

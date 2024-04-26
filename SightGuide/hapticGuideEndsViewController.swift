@@ -40,20 +40,26 @@ class hapticGuideEndsViewController: UIViewController {
     func displayTextAndSpeak() {
         if isFirstTextDisplayed {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                self.speak(text: "Haptic guide end")
-                let delay = 1.5
-                DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-                    self.speak(text: "lets start moving")
+                self.speak(text: "Haptic guide ends")
+            
+                
+                // Delay before speaking the second text
+                let delayBeforeSecondText = 2.5
+                DispatchQueue.main.asyncAfter(deadline: .now() + delayBeforeSecondText) {
+                    self.speak(text: "Let's start moving")
                 }
-                self.timer = Timer.scheduledTimer(timeInterval: 4.0, target: self, selector: #selector(self.updateText), userInfo: nil, repeats: false)
+                
+                // Delay before speaking the third text
+                let delayBeforeThirdText = delayBeforeSecondText + 2.0
+                DispatchQueue.main.asyncAfter(deadline: .now() + delayBeforeThirdText) {
+                    self.speak(text: "Tap and Hold on screen to continue")
+                }
+                
             }
         }
     }
 
-    @objc func updateText(){
-        isFirstTextDisplayed.toggle()
-        displayTextAndSpeak()
-    }
+    
     func speak(text: String){
         let utterance = AVSpeechUtterance(string: text)
         utterance.rate = 0.50

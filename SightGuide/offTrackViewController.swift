@@ -44,16 +44,27 @@ class offTrackViewController: UIViewController {
     func displayTextAndSpeak() {
         if isFirstTextDisplayed {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                self.speak(text: "This haptic means that there's an obstacle in front of you and it'll intensify according to the distance between you and object")
-                self.timer = Timer.scheduledTimer(timeInterval: 4.0, target: self, selector: #selector(self.updateText), userInfo: nil, repeats: false)
+                self.speak(text: "This haptic means that there's an obstacle ahead and it'll intensify according to the distance between you and object")
+                
+                // Delay before speaking the second text
+                let delayBeforeSecondText = 8.0
+                DispatchQueue.main.asyncAfter(deadline: .now() + delayBeforeSecondText) {
+                    self.speak(text: "Swipe left to continue")
+                }
+                
+                // Delay before speaking the third text
+                let delayBeforeThirdText = delayBeforeSecondText + 4.0
+                DispatchQueue.main.asyncAfter(deadline: .now() + delayBeforeThirdText) {
+                    self.speak(text: "Swipe right to go back")
+                }
+                
+                
             }
         }
     }
 
-    @objc func updateText(){
-        isFirstTextDisplayed.toggle()
-        displayTextAndSpeak()
-    }
+
+    
     func speak(text: String){
         let utterance = AVSpeechUtterance(string: text)
         utterance.rate = 0.50

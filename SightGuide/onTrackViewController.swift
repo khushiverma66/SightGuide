@@ -31,30 +31,69 @@ class onTrackViewController: UIViewController {
         tappableButton.layer.masksToBounds = true
         tappableButton.layer.cornerRadius = tappableButton.frame.height / 2
         
-        animateButtonVisibility()
+        //animateButtonVisibility()
         
         navigationItem.hidesBackButton = true
         
     }
-
-    func animateButtonVisibility() {
-        UIView.animate(withDuration: 0.5, delay: 0.0, options: [.autoreverse, .repeat], animations: {
-                self.tappableButton.alpha = 0.0
-            }, completion: nil)
-        }
+//    override func viewDidAppear(_ animated: Bool) {
+//            super.viewDidAppear(animated)
+//            
+//            animateButtonVisibility() // Call animation when the view appears
+//        }
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//            super.viewWillAppear(animated)
+//            if synthesizer.isSpeaking {
+//                synthesizer.stopSpeaking(at: .immediate)
+//            }
+//        animateButtonVisibility()
+//        }
+//    
+//    func animateButtonVisibility() {
+//        UIView.animate(withDuration: 0.5, delay: 0.0, options: [.autoreverse, .repeat], animations: {
+//                self.tappableButton.alpha = 0.0
+//            }, completion: nil)
+//        }
     
     override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
-            if synthesizer.isSpeaking {
-                synthesizer.stopSpeaking(at: .immediate)
-            }
+            
+            displayTextAndSpeak()
+        
+            
+            // Ensure tappableButton frame is properly set before animation
+            tappableButton.backgroundColor = .black
+            tappableButton.layer.masksToBounds = true
+            tappableButton.layer.cornerRadius = tappableButton.frame.height / 2
+            
+            animateButtonVisibility() // Call animation when the view appears
         }
-
+        
+        func animateButtonVisibility() {
+            let animation = CABasicAnimation(keyPath: "opacity")
+            animation.fromValue = 1.0
+            animation.toValue = 0.0
+            animation.duration = 0.5
+            animation.autoreverses = true
+            animation.repeatCount = .infinity
+            
+            tappableButton.layer.add(animation, forKey: "opacityAnimation")
+        }
+        
+        override func viewWillDisappear(_ animated: Bool) {
+            super.viewWillDisappear(animated)
+            // Stop the animation when the view disappears
+            tappableButton.layer.removeAnimation(forKey: "opacityAnimation")
+        }
+    
+    
 //    @IBAction func handleLongPress(_ sender: UILongPressGestureRecognizer) {
 //        if sender.state == .began {
 //            performSegue(withIdentifier: "ShowNextVC", sender: self)
 //        }
 //    }
+    
     @IBAction func handleBackSwipe(segue: UIStoryboardSegue) {
         print("going back")
     }
@@ -65,10 +104,11 @@ class onTrackViewController: UIViewController {
                 self.timer = Timer.scheduledTimer(timeInterval: 4.0, target: self, selector: #selector(self.updateText), userInfo: nil, repeats: false)
             }
         }
+        isFirstTextDisplayed = false
     }
 
     @objc func updateText(){
-        isFirstTextDisplayed.toggle()
+        //isFirstTextDisplayed.toggle()
         displayTextAndSpeak()
     }
     func speak(text: String){

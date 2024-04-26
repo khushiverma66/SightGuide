@@ -16,6 +16,9 @@ class hapticGuideEndsViewController: UIViewController {
     var timer: Timer?
     
     
+    @IBOutlet var holdButton: UILongPressGestureRecognizer!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
@@ -31,6 +34,7 @@ class hapticGuideEndsViewController: UIViewController {
     @IBAction func handleBackSwipe(segue: UIStoryboardSegue) {
         print("going back")
     }
+    
     func displayTextAndSpeak() {
         if isFirstTextDisplayed {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {

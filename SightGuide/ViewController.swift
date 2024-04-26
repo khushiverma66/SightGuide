@@ -8,6 +8,7 @@ import AVKit
 import UIKit
 
 class ViewController: UIViewController {
+    
     @IBOutlet weak var welcomeText: UILabel!
     @IBOutlet weak var SightGuide: UILabel!
     @IBOutlet weak var infoText: UILabel!
@@ -17,6 +18,8 @@ class ViewController: UIViewController {
     var timer: Timer?
     
     @IBOutlet var holdButton: UILongPressGestureRecognizer!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +33,8 @@ class ViewController: UIViewController {
             performSegue(withIdentifier: "ShowNextVC", sender: self)
         }
     }
+    
+    
     @IBAction func handleBackSwipe(segue: UIStoryboardSegue) {
         print("going back")
     }

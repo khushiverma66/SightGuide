@@ -18,6 +18,11 @@ class offTrackViewController: UIViewController {
     var timer: Timer?
     var circles: [UIView] = []
         var currentCircleIndex: Int = 0
+    var feedbackGenerator: UIImpactFeedbackGenerator?
+        var isFeedbackInProgress: Bool = false
+    var currentIntensity: CGFloat = 0.0
+        let intensityIncrement: CGFloat = 0.05
+        let maximumIntensity: CGFloat = 1.0
     
     
     override func viewDidLoad() {
@@ -31,7 +36,20 @@ class offTrackViewController: UIViewController {
         animateCircles()
         
         navigationItem.hidesBackButton = true
+        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(triggerHaptic), userInfo: nil, repeats: true)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+            
+            startHapticPattern()
+        }
+        
+        override func viewWillDisappear(_ animated: Bool) {
+            super.viewWillDisappear(animated)
+            
+            stopHapticPattern()
+        }
 
 //    @IBAction func handleLongPress(_ sender: UILongPressGestureRecognizer) {
 //        if sender.state == .began {
@@ -114,5 +132,38 @@ class offTrackViewController: UIViewController {
                 self.currentCircleIndex += 1
                 self.animateCircles() // Recursively animate next circle
             })
+        }
+    
+    func startHapticPattern() {
+            if !isFeedbackInProgress {
+                isFeedbackInProgress = true
+                feedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
+                feedbackGenerator?.prepare()
+                timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(triggerHaptic), userInfo: nil, repeats: true)
+            }
+        }
+        
+    @objc func triggerHaptic() {
+        // Increase the intensity gradually
+        currentIntensity += intensityIncrement
+        
+        // Clamp the intensity to ensure it doesn't exceed the maximum value
+        currentIntensity = min(currentIntensity, maximumIntensity)
+        
+        // Set the intensity of the feedback generator
+        feedbackGenerator?.impactOccurred(intensity: currentIntensity)
+        
+        // Check if the maximum intensity has been reached
+        if currentIntensity >= maximumIntensity {
+            // Invalidate the timer to stop the haptic feedback
+            timer?.invalidate()
+            timer = nil
+        }
+    }
+        
+        func stopHapticPattern() {
+            isFeedbackInProgress = false
+            timer?.invalidate()
+            feedbackGenerator = nil
         }
 }

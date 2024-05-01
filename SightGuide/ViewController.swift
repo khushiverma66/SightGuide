@@ -28,7 +28,14 @@ class ViewController: UIViewController {
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
         self.view.addGestureRecognizer(longPress)
         displayTextAndSpeak()
+        
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        stopSpeech()
+        
+    }
+    
 
     @IBAction func handleLongPress(_ sender: UILongPressGestureRecognizer) {
         switch sender.state {
@@ -97,6 +104,9 @@ class ViewController: UIViewController {
         utterance.volume = 1
         utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
         synthesizer.speak(utterance)
+    }
+    func stopSpeech() {
+        synthesizer.stopSpeaking(at: .immediate)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

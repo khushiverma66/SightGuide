@@ -267,35 +267,53 @@
                     </view>
                     <navigationItem key="navigationItem" id="z4w-Vk-xQw"/>
                     <connections>
-                        <outlet property="holdButton" destination="iRi-sz-Vni" id="jZI-2m-E1z"/>
-                        <segue destination="Sds-lQ-vAf" kind="show" identifier="ShowNextVC" id="GfZ-cg-dKz"/>
+                        <outlet property="holdButton" destination="iRi-sz-Vni" id="hqX-36-lq0"/>
+                        <segue destination="8uV-Uj-cFv" kind="show" identifier="ShowCameraScreen" id="Wnc-n2-Evv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dHH-Bo-X1v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="kj3-sr-Tct" userLabel="Exit" sceneMemberID="exit"/>
                 <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="iRi-sz-Vni">
                     <connections>
-                        <action selector="secondHoldButton:" destination="kj3-sr-Tct" id="czu-tc-adw"/>
+                        <action selector="handleLongPress:" destination="dmX-6w-4BD" id="8pn-pR-tTh"/>
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3063" y="-18"/>
         </scene>
-        <!--Camera View Controller-->
+        <!--View Controller-->
         <scene sceneID="Ozr-ZT-kRf">
             <objects>
-                <viewController id="Sds-lQ-vAf" customClass="CameraViewController" customModule="SightGuide" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="2kj-ln-sQ3">
+                <viewController id="Sds-lQ-vAf" customClass="ARViewController" customModule="SightGuide" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2kj-ln-sQ3" customClass="ARSCNView">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="V9v-If-gnw"/>
                         <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="LFz-E3-B2A"/>
+                    <connections>
+                        <outlet property="sceneView" destination="2kj-ln-sQ3" id="Z4c-Lf-OJW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oEy-2U-KNj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3824" y="-18"/>
+            <point key="canvasLocation" x="3779" y="703"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="4wx-Ev-Sff">
+            <objects>
+                <viewController storyboardIdentifier="ARViewController" id="8uV-Uj-cFv" customClass="ARViewController" customModule="SightGuide" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="txF-wI-zof">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="W4L-mi-VrP"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="hgS-iS-ARN"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wvG-A6-pPJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4290.8396946564881" y="-18.30985915492958"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="h6s-yY-8Ug">

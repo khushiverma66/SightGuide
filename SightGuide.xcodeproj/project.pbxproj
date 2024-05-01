@@ -40,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		266714C82BDF59F800E8D715 /* VisionKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VisionKit.framework; path = System/Library/Frameworks/VisionKit.framework; sourceTree = SDKROOT; };
 		26A476C22BDA5D10000709A8 /* cameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cameraViewController.swift; sourceTree = "<group>"; };
 		26A476C42BDA670B000709A8 /* offTrackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = offTrackViewController.swift; sourceTree = "<group>"; };
 		26A476C62BDA6786000709A8 /* onTrackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onTrackViewController.swift; sourceTree = "<group>"; };
@@ -84,6 +85,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		266714C72BDF59F800E8D715 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				266714C82BDF59F800E8D715 /* VisionKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3FFCECA12BC3FE3600790386 = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +100,7 @@
 				3FFCECC32BC3FE3800790386 /* SightGuideTests */,
 				3FFCECCD2BC3FE3800790386 /* SightGuideUITests */,
 				3FFCECAB2BC3FE3600790386 /* Products */,
+				266714C72BDF59F800E8D715 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -155,6 +165,8 @@
 			dependencies = (
 			);
 			name = SightGuide;
+			packageProductDependencies = (
+			);
 			productName = SightGuide;
 			productReference = 3FFCECAA2BC3FE3600790386 /* SightGuide.app */;
 			productType = "com.apple.product-type.application";
@@ -227,6 +239,9 @@
 				Base,
 			);
 			mainGroup = 3FFCECA12BC3FE3600790386;
+			packageReferences = (
+				266714CD2BDF5CAD00E8D715 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
+			);
 			productRefGroup = 3FFCECAB2BC3FE3600790386 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -621,6 +636,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		266714CD2BDF5CAD00E8D715 /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-algorithms.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 3FFCECA22BC3FE3600790386 /* Project object */;
 }

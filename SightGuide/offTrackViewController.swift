@@ -49,6 +49,7 @@ class offTrackViewController: UIViewController {
             super.viewWillDisappear(animated)
             
             stopHapticPattern()
+            stopSpeech()
         }
 
 //    @IBAction func handleLongPress(_ sender: UILongPressGestureRecognizer) {
@@ -159,6 +160,9 @@ class offTrackViewController: UIViewController {
             timer?.invalidate()
             timer = nil
         }
+    }
+    func stopSpeech() {
+        synthesizer.stopSpeaking(at: .immediate)
     }
         
         func stopHapticPattern() {

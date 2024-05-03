@@ -31,18 +31,16 @@ class onTrackViewController: UIViewController {
         
         navigationItem.hidesBackButton = true
         
-        if isFirstTextDisplayed && !isSpeechInProgress {
-            displayTextAndSpeak()
-        }
+
+        //displayTextAndSpeak()
+
         startHapticPattern()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if isFirstTextDisplayed && !isSpeechInProgress {
-            
-        }
+        
         displayTextAndSpeak()
         
         animateButtonVisibility()
@@ -93,17 +91,13 @@ class onTrackViewController: UIViewController {
     }
     
     func displayTextAndSpeak() {
-        if isFirstTextDisplayed {
-            isFirstTextDisplayed = false // Set flag to indicate that text has been displayed
+        
+            
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                self.speak(text: "This haptic means that there is no obstacle in the way and you are going in the right direction")
-                // Delay before speaking the second text
-                let delayBeforeSecondText = 5.5
-                DispatchQueue.main.asyncAfter(deadline: .now() + delayBeforeSecondText) {
-                    self.speak(text: "Swipe left to continue")
-                }
+                self.speak(text: "This haptic means that there is no obstacle in the way and you are going in the right direction. Swipe left to continue")
+                
             }
-        }
+        
     }
 
     func speak(text: String){

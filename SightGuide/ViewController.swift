@@ -32,7 +32,7 @@ class ViewController: UIViewController {
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        stopSpeech()
+        //stopSpeech()
         
     }
     
@@ -46,6 +46,8 @@ class ViewController: UIViewController {
                    displayLink?.add(to: .current, forMode: .default)
             
                     //performSegue(withIdentifier: "ShowNextVC", sender: self)
+            synthesizer.stopSpeaking(at:.immediate)
+            
             if let storyboard = self.storyboard {
                         let nextViewController = storyboard.instantiateViewController(withIdentifier: "onTrackViewController")
                         self.navigationController?.pushViewController(nextViewController, animated: true)
@@ -77,21 +79,10 @@ class ViewController: UIViewController {
         print("going back")
     }
     func displayTextAndSpeak(){
-        if isFirstTextDisplayed {
-//            welcomeText.text = "Welcome To"
-//            SightGuide.text = "Sight Guide"
-            speak(text: "welcome to Sight Guide")
-            timer = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(updateText), userInfo: nil, repeats: false)
-        } else {
-//            infoText.text = "You will now be experiencing how the haptics will work to navigate you"
-            speak(text: "You will now be experiencing how the haptics will work to navigate you")
-            // Introduce a delay before speaking tapText
-                    let delay = 4.0 // Adjust this value as needed (in seconds)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-//                        self.tapText.text = "Tap and Hold on screen to continue"
-                        self.speak(text: "Tap and Hold on screen to continue")
-                    }
-        }
+        
+
+            speak(text: "welcome to Sight Guide. You will now be experiencing how the haptics will work to navigate you, Tap and Hold on screen to continue")
+
         
     }
     @objc func updateText(){
@@ -105,13 +96,14 @@ class ViewController: UIViewController {
         utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
         synthesizer.speak(utterance)
     }
-    func stopSpeech() {
-        synthesizer.stopSpeaking(at: .immediate)
-    }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            synthesizer.stopSpeaking(at: .immediate)
-        }
+//    func stopSpeech() {
+//        synthesizer.stopSpeaking(at: .immediate)
+//    }
+//    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//            synthesizer.stopSpeaking(at: .immediate)
+//        }
 }
 
                                                                                                                                                                                  

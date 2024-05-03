@@ -27,8 +27,7 @@ class offTrackViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
-//        self.view.addGestureRecognizer(longPress)
+
         displayTextAndSpeak()
         
         addConcentricCircles()
@@ -52,33 +51,16 @@ class offTrackViewController: UIViewController {
             stopSpeech()
         }
 
-//    @IBAction func handleLongPress(_ sender: UILongPressGestureRecognizer) {
-//        if sender.state == .began {
-//            performSegue(withIdentifier: "ShowNextVC", sender: self)
-//        }
-//    }
+
     @IBAction func handleBackSwipe(segue: UIStoryboardSegue) {
         print("going back")
     }
     func displayTextAndSpeak() {
-        if isFirstTextDisplayed {
+       
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                self.speak(text: "This haptic means that there's an obstacle ahead and it'll intensify according to the distance between you and object")
-                
-                // Delay before speaking the second text
-                let delayBeforeSecondText = 6.5
-                DispatchQueue.main.asyncAfter(deadline: .now() + delayBeforeSecondText) {
-                    self.speak(text: "Swipe left to continue")
-                }
-                
-                // Delay before speaking the third text
-                let delayBeforeThirdText = delayBeforeSecondText + 3.0
-                DispatchQueue.main.asyncAfter(deadline: .now() + delayBeforeThirdText) {
-                    self.speak(text: "Swipe right to go back")
-                }
+                self.speak(text: "This haptic means that there's an obstacle ahead and it'll intensify according to the distance between you and object. Swipe left to continue. Swipe right to go back")
                 
                 
-            }
         }
     }
 

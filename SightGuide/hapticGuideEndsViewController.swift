@@ -40,6 +40,7 @@ class hapticGuideEndsViewController: UIViewController {
                    displayLink?.add(to: .current, forMode: .default)
             
                     //performSegue(withIdentifier: "ShowNextVC", sender: self)
+            synthesizer.stopSpeaking(at:.immediate)
             if let storyboard = self.storyboard {
                         let nextViewController = storyboard.instantiateViewController(withIdentifier: "ARViewController")
                         self.navigationController?.pushViewController(nextViewController, animated: true)
@@ -66,17 +67,13 @@ class hapticGuideEndsViewController: UIViewController {
     func displayTextAndSpeak() {
         if isFirstTextDisplayed {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                self.speak(text: "Haptic guide ends")
+                self.speak(text: "Haptic guide ends. Let's start moving")
             
                 
-                // Delay before speaking the second text
-                let delayBeforeSecondText = 2.5
-                DispatchQueue.main.asyncAfter(deadline: .now() + delayBeforeSecondText) {
-                    self.speak(text: "Let's start moving")
-                }
+                
                 
                 // Delay before speaking the third text
-                let delayBeforeThirdText = delayBeforeSecondText + 2.0
+                let delayBeforeThirdText =  2.0
                 DispatchQueue.main.asyncAfter(deadline: .now() + delayBeforeThirdText) {
                     self.speak(text: "Tap and Hold on screen to continue")
                 }

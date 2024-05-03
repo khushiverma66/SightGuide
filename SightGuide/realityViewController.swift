@@ -226,7 +226,7 @@ class RealityViewController: UIViewController, ARSessionDelegate, SCNSceneRender
             let model = ModelEntity(mesh: textMesh, materials: [textMaterial])
             // Move text geometry to the left so that its local origin is in the center
             model.position.x -= model.visualBounds(relativeTo: nil).extents.x / 2
-            // Add model to cache
+         
             modelsForClassification[classification] = model
             return model
         }

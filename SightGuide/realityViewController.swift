@@ -16,6 +16,10 @@ class RealityViewController: UIViewController, ARSessionDelegate, SCNSceneRender
     var lastSpokenClassification: String?
     var lastSpeechTime: TimeInterval = 0
     let speechDelay: TimeInterval = 3 // Adjust the delay as needed
+    var lastSpokenDistance: Float?
+    let significantDistanceChange: Float = 1.0 // Adjust as needed
+    let significantTimeDifference: TimeInterval = 1.0 // Adjust as needed
+    let scale: Float = 1.0
     
     
     // Cache for 3D text geometries representing the classification values.
@@ -65,7 +69,12 @@ class RealityViewController: UIViewController, ARSessionDelegate, SCNSceneRender
         let dx = point2.x - point1.x
         let dy = point2.y - point1.y
         let dz = point2.z - point1.z
-        return sqrt(dx*dx + dy*dy + dz*dz)
+        let distanceInPoints = sqrt(dx*dx + dy*dy + dz*dz)
+            
+            // Convert distance from points to meters using the scale factor
+            let distanceInMeters = distanceInPoints * scale
+            
+            return distanceInMeters
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -125,7 +134,9 @@ class RealityViewController: UIViewController, ARSessionDelegate, SCNSceneRender
         }
     }
     
-    func speakClassificationIfNeeded(_ classification: ARMeshClassification) {
+    
+    
+    func speakClassificationIfNeeded(_ classification: ARMeshClassification, distance: Float) {
         let currentTime = Date.timeIntervalSinceReferenceDate
         
         // Check if enough time has passed since the last speech
@@ -134,15 +145,50 @@ class RealityViewController: UIViewController, ARSessionDelegate, SCNSceneRender
             
             // Check if the classification is different from the last spoken one
             if classificationName != lastSpokenClassification {
-                let speechUtterance = AVSpeechUtterance(string: classificationName)
-                speechUtterance.voice = AVSpeechSynthesisVoice(language: "en-US")
-                speechSynthesizer.speak(speechUtterance)
-                lastSpokenClassification = classificationName
+                // If the classification is different, speak the new classification and distance
+                speak(classification: classificationName, distance: distance)
+            } else {
+                if currentTime - lastSpeechTime >= 2 {
+                    speak(distance: distance)
+                }
                 
-                // Update the last speech time
-                lastSpeechTime = currentTime
+                // If the classification is the same, check if the distance has changed significantly
+//                if let lastDistance = lastSpokenDistance {
+//                                let distanceChange = abs(distance - lastDistance)
+//                                if distanceChange >= significantDistanceChange {
+//                                    // If the distance has changed significantly, speak the updated distance
+//                                    speak(distance: distance)
+//                                }
+//                            }
             }
         }
+    }
+    
+    func speak(classification: String, distance: Float) {
+        let speechString = "\(classification) at \(Int(distance)) meters ahead."
+        let speechUtterance = AVSpeechUtterance(string: speechString)
+        speechUtterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+        speechSynthesizer.speak(speechUtterance)
+        
+        // Update the last spoken classification and distance
+        lastSpokenClassification = classification
+        lastSpokenDistance = distance
+        
+        // Update the last speech time
+        lastSpeechTime = Date.timeIntervalSinceReferenceDate
+    }
+    
+    func speak(distance: Float) {
+        let speechString = "\(Int(distance)) meters "
+        let speechUtterance = AVSpeechUtterance(string: speechString)
+        speechUtterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+        speechSynthesizer.speak(speechUtterance)
+        
+        // Update the last spoken distance
+        lastSpokenDistance = distance
+        
+        // Update the last speech time
+        lastSpeechTime = Date.timeIntervalSinceReferenceDate
     }
     
     // Delegate method to handle updates to the AR session
@@ -160,7 +206,7 @@ class RealityViewController: UIViewController, ARSessionDelegate, SCNSceneRender
             nearbyFaceWithClassification(to: result.worldTransform.position) { _, classification in
                 if let classification = classification {
                     print("Classification: \(classification.description)")
-                    self.speakClassificationIfNeeded(classification)
+                    self.speakClassificationIfNeeded(classification, distance: distance)
                 }
             }
         }

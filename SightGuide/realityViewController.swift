@@ -1,6 +1,7 @@
 import RealityKit
 import ARKit
 import AVFoundation
+import SwiftUI
 
 class RealityViewController: UIViewController, ARSessionDelegate, SCNSceneRendererDelegate {
     
@@ -62,6 +63,9 @@ class RealityViewController: UIViewController, ARSessionDelegate, SCNSceneRender
         arView.session.run(configuration)
         
         navigationItem.hidesBackButton = true
+        
+        
+        
         
     }
     
@@ -139,65 +143,7 @@ class RealityViewController: UIViewController, ARSessionDelegate, SCNSceneRender
     
     
     
-//    func speakClassificationIfNeeded(_ classification: ARMeshClassification, distance: Float) {
-//        if classification.description == "none" {
-//                // If the classification is nil, return early and do nothing
-//                return
-//            }
-//        let currentTime = Date.timeIntervalSinceReferenceDate
-//        
-//        // Check if enough time has passed since the last speech
-//        if currentTime - lastSpeechTime >= speechDelay {
-//            let classificationName = classification.description
-//            
-//            // Check if the classification is different from the last spoken one
-//            if classificationName != lastSpokenClassification {
-//                // If the classification is different, speak the new classification and distance
-//                speak(classification: classificationName, distance: distance)
-//                
-//            } else {
-//                if currentTime - lastSpeechTime >= 2 {
-//                    speak(distance: distance)
-//                }
-//                
-//                // If the classification is the same, check if the distance has changed significantly
-////                if let lastDistance = lastSpokenDistance {
-////                                let distanceChange = abs(distance - lastDistance)
-////                                if distanceChange >= significantDistanceChange {
-////                                    // If the distance has changed significantly, speak the updated distance
-////                                    speak(distance: distance)
-////                                }
-////                            }
-//            }
-//        }
-//    }
-//    
-//    func speak(classification: String, distance: Float) {
-//        let speechString = "\(classification) at \(Int(distance)) meters ahead."
-//        let speechUtterance = AVSpeechUtterance(string: speechString)
-//        speechUtterance.voice = AVSpeechSynthesisVoice(language: "en-US")
-//        speechSynthesizer.speak(speechUtterance)
-//        
-//        // Update the last spoken classification and distance
-//        lastSpokenClassification = classification
-//        lastSpokenDistance = distance
-//        
-//        // Update the last speech time
-//        lastSpeechTime = Date.timeIntervalSinceReferenceDate
-//    }
-//    
-//    func speak(distance: Float) {
-//        let speechString = "\(Int(distance)) meters "
-//        let speechUtterance = AVSpeechUtterance(string: speechString)
-//        speechUtterance.voice = AVSpeechSynthesisVoice(language: "en-US")
-//        speechSynthesizer.speak(speechUtterance)
-//        
-//        // Update the last spoken distance
-//        lastSpokenDistance = distance
-//        
-//        // Update the last speech time
-//        lastSpeechTime = Date.timeIntervalSinceReferenceDate
-//    }
+
     
     
     
@@ -209,6 +155,35 @@ class RealityViewController: UIViewController, ARSessionDelegate, SCNSceneRender
         if classification.description == "Floor" {
             return
         }
+        
+        guard let symbolName = classification.sfSymbolName else {
+                return
+            }
+            
+        DispatchQueue.main.async {
+            // Remove any existing UIImageView from the view hierarchy
+            self.view.subviews.forEach { subview in
+                if let imageView = subview as? UIImageView {
+                    imageView.removeFromSuperview()
+                }
+            }
+
+            let imageView = UIImageView()
+            
+            imageView.frame = CGRect(x: 100, y: 100, width: 100, height: 100)
+            
+            if let symbolImage = UIImage(systemName: symbolName) {
+                imageView.image = symbolImage
+                
+                self.view.addSubview(imageView)
+            } else {
+                print("Failed to create UIImage from SF Symbol")
+            }
+        
+            }
+        
+        
+        
         let currentTime = Date.timeIntervalSinceReferenceDate
         
         if currentTime - lastSpeechTime >= speechDelay {
@@ -299,6 +274,8 @@ class RealityViewController: UIViewController, ARSessionDelegate, SCNSceneRender
             print("Distance: \(distance)")
             distanceLabel.text = "\(distance)"
             provideHapticFeedback(distance)
+            
+            
             
             nearbyFaceWithClassification(to: result.worldTransform.position) { _, classification in
                 if let classification = classification {

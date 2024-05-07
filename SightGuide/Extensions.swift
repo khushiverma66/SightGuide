@@ -43,6 +43,21 @@ extension ARMeshClassification {
         @unknown default: return .gray
         }
     }
+    
+    var sfSymbolName: String? {
+            switch self {
+            case .ceiling: return "chevron.up.circle.fill"
+            case .door: return "door.fill"
+            case .floor: return "square.fill"
+            case .seat: return "person.3.fill"
+            case .table: return "tablecells.fill"
+            case .wall: return "rectangle.fill"
+            case .window: return "rectangle.fill.on.rectangle.angled.fill"
+            default: return nil
+            }
+        }
+    
+    
 }
 
 extension Transform {

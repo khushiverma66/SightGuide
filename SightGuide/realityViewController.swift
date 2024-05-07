@@ -7,6 +7,7 @@ class RealityViewController: UIViewController, ARSessionDelegate, SCNSceneRender
     @IBOutlet var arView: ARView!
     var distanceUpdateTimer: Timer?
     
+    @IBOutlet var distanceLabel: UILabel!
     var hapticGenerator: UIImpactFeedbackGenerator?
     
     let coachingOverlay = ARCoachingOverlayView()
@@ -62,7 +63,6 @@ class RealityViewController: UIViewController, ARSessionDelegate, SCNSceneRender
         
         navigationItem.hidesBackButton = true
         
-        
     }
     
     
@@ -83,6 +83,7 @@ class RealityViewController: UIViewController, ARSessionDelegate, SCNSceneRender
         super.viewDidAppear(animated)
         // Prevent the screen from being dimmed to avoid interrupting the AR experience.
         UIApplication.shared.isIdleTimerDisabled = true
+        
     }
     
     override var prefersHomeIndicatorAutoHidden: Bool {
@@ -296,6 +297,7 @@ class RealityViewController: UIViewController, ARSessionDelegate, SCNSceneRender
             let hitPosition = SCNVector3(hitTransform.columns.3.x, hitTransform.columns.3.y, hitTransform.columns.3.z)
             let distance = calculateDistance(cameraPosition, hitPosition)
             print("Distance: \(distance)")
+            distanceLabel.text = "\(distance)"
             provideHapticFeedback(distance)
             
             nearbyFaceWithClassification(to: result.worldTransform.position) { _, classification in

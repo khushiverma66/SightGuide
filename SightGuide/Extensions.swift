@@ -20,7 +20,7 @@ extension ARMeshClassification {
         case .ceiling: return "Ceiling"
         case .door: return "Door"
         case .floor: return "Floor"
-        case .seat: return "Seat"
+        case .seat: return "Chair"
         case .table: return "Table"
         case .wall: return "Wall"
         case .window: return "Window"

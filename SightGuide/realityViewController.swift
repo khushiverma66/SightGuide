@@ -60,6 +60,8 @@ class RealityViewController: UIViewController, ARSessionDelegate, SCNSceneRender
         configuration.environmentTexturing = .automatic
         arView.session.run(configuration)
         
+        navigationItem.hidesBackButton = true
+        
         
     }
     

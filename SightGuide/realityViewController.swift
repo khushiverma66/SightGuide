@@ -17,11 +17,12 @@ class RealityViewController: UIViewController, ARSessionDelegate, SCNSceneRender
     var speechTimer: Timer?
     var lastSpokenClassification: String?
     var lastSpeechTime: TimeInterval = 0
-    let speechDelay: TimeInterval = 3 // Adjust the delay as needed
+    let speechDelay: TimeInterval = 3
     var lastSpokenDistance: Float?
-    let significantDistanceChange: Float = 1.0 // Adjust as needed
-    let significantTimeDifference: TimeInterval = 1.0 // Adjust as needed
+    let significantDistanceChange: Float = 1.0
+    let significantTimeDifference: TimeInterval = 1.0 
     let scale: Float = 1.0
+    var lastHapticTime: TimeInterval = 0
     
     
     // Cache for 3D text geometries representing the classification values.
@@ -41,20 +42,14 @@ class RealityViewController: UIViewController, ARSessionDelegate, SCNSceneRender
         
         arView.environment.sceneUnderstanding.options = []
         
-        // Turn on occlusion from the scene reconstruction's mesh.
         arView.environment.sceneUnderstanding.options.insert(.occlusion)
         
-        // Turn on physics for the scene reconstruction's mesh.
         arView.environment.sceneUnderstanding.options.insert(.physics)
         
-        // Display a debug visualization of the mesh.
         arView.debugOptions.insert(.showSceneUnderstanding)
         
-        // For performance, disable render options that are not required for this app.
         arView.renderOptions = [.disablePersonOcclusion, .disableDepthOfField, .disableMotionBlur]
-        
-        // Manually configure what kind of AR session to run since
-        // ARView on its own does not turn on mesh classification.
+       
         arView.automaticallyConfigureSession = false
         let configuration = ARWorldTrackingConfiguration()
         configuration.sceneReconstruction = .meshWithClassification
@@ -63,10 +58,6 @@ class RealityViewController: UIViewController, ARSessionDelegate, SCNSceneRender
         arView.session.run(configuration)
         
         navigationItem.hidesBackButton = true
-        
-        
-        
-        
     }
     
     
@@ -142,60 +133,75 @@ class RealityViewController: UIViewController, ARSessionDelegate, SCNSceneRender
     }
     
     
-    
-
-    
-    
-    
     func speakClassificationIfNeeded(_ classification: ARMeshClassification, distance: Float) {
-        if classification.description == "none" {
-                return
-            }
+        let currentTime = Date.timeIntervalSinceReferenceDate
+        
         
         if classification.description == "Floor" {
             return
         }
         
+        if classification.description == "Ceiling" {
+            return
+        }
+        
+//        if(classification.description == "unidentified"){
+//            print("ekhwfrbehfrih3ioerfoierggjjygguyuybjhbjbjbhjbjguygygjguguvjvhvfo")
+//            if(currentTime - lastSpeechTime > 2.0){
+//                nspeak(classification: "unidentified object")
+//                lastSpeechTime = Date.timeIntervalSinceReferenceDate
+//            }
+//            
+//            return
+//        }
+//        
         guard let symbolName = classification.sfSymbolName else {
                 return
             }
             
-        DispatchQueue.main.async {
-            // Remove any existing UIImageView from the view hierarchy
-            self.view.subviews.forEach { subview in
-                if let imageView = subview as? UIImageView {
-                    imageView.removeFromSuperview()
-                }
-            }
-
-            let imageView = UIImageView()
-            
-            imageView.frame = CGRect(x: 100, y: 100, width: 100, height: 100)
-            
-            if let symbolImage = UIImage(systemName: symbolName) {
-                imageView.image = symbolImage
-                
-                self.view.addSubview(imageView)
-            } else {
-                print("Failed to create UIImage from SF Symbol")
-            }
+//        DispatchQueue.main.async {
+//            // Remove any existing UIImageView from the view hierarchy
+//            self.view.subviews.forEach { subview in
+//                if let imageView = subview as? UIImageView {
+//                    imageView.removeFromSuperview()
+//                }
+//            }
+//
+//            let imageView = UIImageView()
+//            
+//            imageView.frame = CGRect(x: 100, y: 100, width: 100, height: 100)
+//            
+//            if let symbolImage = UIImage(systemName: symbolName) {
+//                imageView.image = symbolImage
+//                
+//                self.view.addSubview(imageView)
+//            } else {
+//                print("Failed to create UIImage from SF Symbol")
+//            }
+//        
+//            }
+//        
         
-            }
         
         
         
-        let currentTime = Date.timeIntervalSinceReferenceDate
+    
         
         if currentTime - lastSpeechTime >= speechDelay {
             let classificationName = classification.description
             
+            
             if classificationName != lastSpokenClassification {
 //                speak(classification: classificationName, distance: distance)
+                
+                
+                print(classificationName)
                 nspeak(classification: classificationName)
                 
             } else {
                 if currentTime - lastSpeechTime >= 2 {
 //                    speak(distance: distance)
+                   
                     nspeak(classification: classificationName, distance : distance)
                 }
                 
@@ -272,8 +278,10 @@ class RealityViewController: UIViewController, ARSessionDelegate, SCNSceneRender
             let hitPosition = SCNVector3(hitTransform.columns.3.x, hitTransform.columns.3.y, hitTransform.columns.3.z)
             let distance = calculateDistance(cameraPosition, hitPosition)
             print("Distance: \(distance)")
-            distanceLabel.text = "\(distance)"
-            provideHapticFeedback(distance)
+//            distanceLabel.text = "\(distance)"
+//            distanceLabel.text = String(format: "%.2f", distance)
+            let roundedValue = round(distance * 10) / 10
+            provideHapticFeedback(roundedValue)
             
             
             
@@ -314,10 +322,21 @@ class RealityViewController: UIViewController, ARSessionDelegate, SCNSceneRender
         
         func provideHapticFeedback(_ distance: Float) {
             // Reverse the intensity: stronger haptic for shorter distances
-            let intensity = CGFloat(max(0, min(1, 1 - distance / 1.2))) // Example: Inverted distance mapped to intensity between 0 and 1
-            hapticGenerator?.impactOccurred(intensity: intensity)
+//            let intensity = CGFloat(max(0, min(1, 1 - distance / 1.2)))
+            let intensity = CGFloat(max(0, (1 - distance / 1.2)))
+//            hapticGenerator?.impactOccurred(intensity: intensity)
+            if distance > 2 || intensity < 0.2 {
+                        let currentTime = Date.timeIntervalSinceReferenceDate
+                        if currentTime - lastHapticTime >= 1.0 {
+                            lastHapticTime = currentTime
+                            hapticGenerator?.impactOccurred(intensity: 1)
+                        }
+                    }
+            else{
+                hapticGenerator?.impactOccurred(intensity: intensity)
+            }
+            
             
         }
     }
 }
-

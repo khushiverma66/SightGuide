@@ -1,9 +1,3 @@
-//
-//  onTrackViewController.swift
-//  SightGuide
-//
-//  Created by Khushi Verma on 25/04/24.
-//
 
 import Foundation
 import AVKit
@@ -31,9 +25,6 @@ class onTrackViewController: UIViewController {
         
         navigationItem.hidesBackButton = true
         
-
-        //displayTextAndSpeak()
-
         startHapticPattern()
     }
     

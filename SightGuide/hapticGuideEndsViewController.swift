@@ -1,9 +1,4 @@
-//
-//  hapticGuideEndsViewController.swift
-//  SightGuide
-//
-//  Created by Khushi Verma on 25/04/24.
-//
+
 import Foundation
 import AVKit
 import UIKit
@@ -39,7 +34,6 @@ class hapticGuideEndsViewController: UIViewController {
                    displayLink = CADisplayLink(target: self, selector: #selector(updateHapticIntensity))
                    displayLink?.add(to: .current, forMode: .default)
             
-                    //performSegue(withIdentifier: "ShowNextVC", sender: self)
             synthesizer.stopSpeaking(at:.immediate)
             if let storyboard = self.storyboard {
                         let nextViewController = storyboard.instantiateViewController(withIdentifier: "ARViewController")
@@ -69,10 +63,6 @@ class hapticGuideEndsViewController: UIViewController {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 self.speak(text: "Haptic guide ends. Let's start moving")
             
-                
-                
-                
-                // Delay before speaking the third text
                 let delayBeforeThirdText =  2.0
                 DispatchQueue.main.asyncAfter(deadline: .now() + delayBeforeThirdText) {
                     self.speak(text: "Tap and Hold on screen to continue")

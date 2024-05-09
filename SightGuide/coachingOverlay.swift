@@ -1,9 +1,4 @@
-/*
-See LICENSE folder for this sample’s licensing information.
 
-Abstract:
-View controller extension for the on-boarding experience.
-*/
 
 import UIKit
 import ARKit
@@ -22,7 +17,6 @@ extension RealityViewController: ARCoachingOverlayViewDelegate {
     }
 
     func coachingOverlayViewDidRequestSessionReset(_ coachingOverlayView: ARCoachingOverlayView) {
-       // resetButtonPressed(self)
     }
 
     func setupCoachingOverlay() {

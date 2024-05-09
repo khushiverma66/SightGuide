@@ -74,8 +74,6 @@ extension ARMeshGeometry {
         return vertex
     }
     
-    /// To get the mesh's classification, the sample app parses the classification's raw data and instantiates an
-    /// `ARMeshClassification` object. For efficiency, ARKit stores classifications in a Metal buffer in `ARMeshGeometry`.
     func classificationOf(faceWithIndex index: Int) -> ARMeshClassification {
         guard let classification = classification else { return .none }
         assert(classification.format == MTLVertexFormat.uchar, "Expected one unsigned char (one byte) per classification")
@@ -112,23 +110,18 @@ extension ARMeshGeometry {
 }
 
 extension Scene {
-    // Add an anchor and remove it from the scene after the specified number of seconds.
-/// - Tag: AddAnchorExtension
     func addAnchor(_ anchor: HasAnchoring, removeAfter seconds: TimeInterval) {
         guard let model = anchor.children.first as? HasPhysics else {
             return
         }
         
-        // Set up model to participate in physics simulation
         if model.collision == nil {
             model.generateCollisionShapes(recursive: true)
             model.physicsBody = .init()
         }
-        // ... but prevent it from being affected by simulation forces for now.
         model.physicsBody?.mode = .kinematic
         
         addAnchor(anchor)
-        // Making the physics body dynamic at this time will let the model be affected by forces.
         Timer.scheduledTimer(withTimeInterval: seconds, repeats: false) { (timer) in
             model.physicsBody?.mode = .dynamic
         }

@@ -1,9 +1,3 @@
-//
-//  offTrackViewController.swift
-//  SightGuide
-//
-//  Created by Khushi Verma on 25/04/24.
-//
 
 
 import Foundation
@@ -75,14 +69,11 @@ class offTrackViewController: UIViewController {
     }
     
     func addConcentricCircles() {
-        // Define the radii for the circles
-        let radii: [CGFloat] = [20, 40, 60, 80, 100, 120] // Adjust the radii as needed
+        let radii: [CGFloat] = [20, 40, 60, 80, 100, 120]
         
-        // Define the center point for the circles
         let centerX = view.frame.width / 2
         let centerY = view.frame.height / 2
         
-        // Create and add the circles to the view
         for (index, radius) in radii.enumerated() {
             let circleView = UIView(frame: CGRect(x: centerX - radius, y: centerY - radius, width: radius * 2, height: radius * 2))
             circleView.backgroundColor = .clear
@@ -90,10 +81,8 @@ class offTrackViewController: UIViewController {
             circleView.layer.borderWidth = 1.0
             circleView.layer.borderColor = UIColor.black.cgColor
             
-            // Hide all circles initially
             circleView.alpha = 0.0
             
-            // Fill the innermost circle
             if index == 0 {
                 circleView.backgroundColor = .black
             }
@@ -106,14 +95,14 @@ class offTrackViewController: UIViewController {
         
         func animateCircles() {
             guard currentCircleIndex < circles.count else {
-                return // Animation completed
+                return
             }
             
             UIView.animate(withDuration: 0.5, delay: 0.5, options: [], animations: {
                 self.circles[self.currentCircleIndex].alpha = 1.0
             }, completion: { _ in
                 self.currentCircleIndex += 1
-                self.animateCircles() // Recursively animate next circle
+                self.animateCircles()
             })
         }
     
@@ -127,18 +116,13 @@ class offTrackViewController: UIViewController {
         }
         
     @objc func triggerHaptic() {
-        // Increase the intensity gradually
         currentIntensity += intensityIncrement
         
-        // Clamp the intensity to ensure it doesn't exceed the maximum value
         currentIntensity = min(currentIntensity, maximumIntensity)
         
-        // Set the intensity of the feedback generator
         feedbackGenerator?.impactOccurred(intensity: currentIntensity)
         
-        // Check if the maximum intensity has been reached
         if currentIntensity >= maximumIntensity {
-            // Invalidate the timer to stop the haptic feedback
             timer?.invalidate()
             timer = nil
         }

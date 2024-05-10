@@ -6,19 +6,20 @@ import SwiftUI
 class RealityViewController: UIViewController, ARSessionDelegate, SCNSceneRendererDelegate {
     
     @IBOutlet var arView: ARView!
-    var distanceUpdateTimer: Timer?
-    
     @IBOutlet var distanceLabel: UILabel!
+    
+    
     var hapticGenerator: UIImpactFeedbackGenerator?
     
     let coachingOverlay = ARCoachingOverlayView()
-    
     let speechSynthesizer = AVSpeechSynthesizer()
     var speechTimer: Timer?
     var lastSpokenClassification: String?
+    
     var lastSpeechTime: TimeInterval = 0
     let speechDelay: TimeInterval = 3
     var lastSpokenDistance: Float?
+    var distanceUpdateTimer: Timer?
     let significantDistanceChange: Float = 1.0
     let significantTimeDifference: TimeInterval = 1.0
     let scale: Float = 1.0
@@ -138,7 +139,7 @@ class RealityViewController: UIViewController, ARSessionDelegate, SCNSceneRender
         if(classification.description == "unidentified" ){
             lastSpokenClassification = "unidentified"
             if(currentTime - lastSpeechTime > 2.0){
-                nspeak(classification: "unidentified object")
+                speakClassification(classification: "unidentified object")
                 lastSpeechTime = Date.timeIntervalSinceReferenceDate
             }
             
@@ -155,17 +156,17 @@ class RealityViewController: UIViewController, ARSessionDelegate, SCNSceneRender
             
             if classificationName != lastSpokenClassification {
                 print(classificationName)
-                nspeak(classification: classificationName)
+                speakClassification(classification: classificationName)
                 
             } else {
                 if currentTime - lastSpeechTime >= 2 {
-                    nspeak(classification: classificationName, distance : distance)
+                    speakClassificationWithDistance(classification: classificationName, distance : distance)
                 }
             }
         }
     }
     
-    func nspeak(classification : String){
+    func speakClassification(classification : String){
         let speechString = "\(classification)"
         let speechUtterance = AVSpeechUtterance(string: speechString)
         speechUtterance.voice = AVSpeechSynthesisVoice(language: "en-US")
@@ -175,7 +176,7 @@ class RealityViewController: UIViewController, ARSessionDelegate, SCNSceneRender
         lastSpeechTime = Date.timeIntervalSinceReferenceDate
     }
     
-    func nspeak(classification: String, distance : Float){
+    func speakClassificationWithDistance(classification: String, distance : Float){
         let speechString = "\(classification) at \(Int(distance)) meters ahead."
         let speechUtterance = AVSpeechUtterance(string: speechString)
         speechUtterance.voice = AVSpeechSynthesisVoice(language: "en-US")
@@ -187,28 +188,7 @@ class RealityViewController: UIViewController, ARSessionDelegate, SCNSceneRender
         lastSpeechTime = Date.timeIntervalSinceReferenceDate
     }
     
-    func speak(classification: String, distance: Float) {
-        let speechString = "\(classification) at \(Int(distance)) meters ahead."
-        let speechUtterance = AVSpeechUtterance(string: speechString)
-        speechUtterance.voice = AVSpeechSynthesisVoice(language: "en-US")
-        speechSynthesizer.speak(speechUtterance)
-        
-        lastSpokenClassification = classification
-        lastSpokenDistance = distance
-        
-        lastSpeechTime = Date.timeIntervalSinceReferenceDate
-    }
     
-    func speak(distance: Float) {
-        let speechString = "\(Int(distance)) meters "
-        let speechUtterance = AVSpeechUtterance(string: speechString)
-        speechUtterance.voice = AVSpeechSynthesisVoice(language: "en-US")
-        speechSynthesizer.speak(speechUtterance)
-        
-        lastSpokenDistance = distance
-        
-        lastSpeechTime = Date.timeIntervalSinceReferenceDate
-    }
     
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
         

@@ -1,13 +1,25 @@
+//
+//  RealityViewController.swift
+//  SightGuide
+//
+//  Created by Ravneet and Yogesh.
+//
+
+
 import RealityKit
 import ARKit
 import AVFoundation
 import SwiftUI
 
+/// View controller managing the AR experience and providing user feedback.
 class RealityViewController: UIViewController, ARSessionDelegate, SCNSceneRendererDelegate {
+    
+    // MARK: - Outlets
     
     @IBOutlet var arView: ARView!
     @IBOutlet var distanceLabel: UILabel!
     
+    // MARK: - Properties
     
     var hapticGenerator: UIImpactFeedbackGenerator?
     
@@ -15,7 +27,6 @@ class RealityViewController: UIViewController, ARSessionDelegate, SCNSceneRender
     let speechSynthesizer = AVSpeechSynthesizer()
     var speechTimer: Timer?
     var lastSpokenClassification: String?
-    
     var lastSpeechTime: TimeInterval = 0
     let speechDelay: TimeInterval = 3
     var lastSpokenDistance: Float?
@@ -26,9 +37,9 @@ class RealityViewController: UIViewController, ARSessionDelegate, SCNSceneRender
     var lastHapticTime: TimeInterval = 0
     var isAlternateFrame = false
     var frameCounter = 0
-    
-
     var modelsForClassification: [ARMeshClassification: ModelEntity] = [:]
+    
+    // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,43 +47,15 @@ class RealityViewController: UIViewController, ARSessionDelegate, SCNSceneRender
         hapticGenerator = UIImpactFeedbackGenerator(style: .heavy)
         hapticGenerator?.prepare()
         
-        arView.session.delegate = self
-        
-        
+        setupARView()
         setupCoachingOverlay()
-        
-        arView.environment.sceneUnderstanding.options = []
-        
-        arView.environment.sceneUnderstanding.options.insert(.occlusion)
-        
-        arView.environment.sceneUnderstanding.options.insert(.physics)
-        
-        arView.debugOptions.insert(.showSceneUnderstanding)
-        
-        arView.renderOptions = [.disablePersonOcclusion, .disableDepthOfField, .disableMotionBlur]
-       
-        arView.automaticallyConfigureSession = false
-        let configuration = ARWorldTrackingConfiguration()
-        configuration.sceneReconstruction = .meshWithClassification
-        
-        configuration.environmentTexturing = .automatic
-        arView.session.run(configuration)
+        setupARConfiguration()
         
         navigationItem.hidesBackButton = true
     }
     
     
-   
-    func calculateDistance(_ point1: SCNVector3, _ point2: SCNVector3) -> Float {
-        let dx = point2.x - point1.x
-        let dy = point2.y - point1.y
-        let dz = point2.z - point1.z
-        let distanceInPoints = sqrt(dx*dx + dy*dy + dz*dz)
-            
-            let distanceInMeters = distanceInPoints * scale
-            
-            return distanceInMeters
-    }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -88,42 +71,31 @@ class RealityViewController: UIViewController, ARSessionDelegate, SCNSceneRender
         return true
     }
     
-    
-    func nearbyFaceWithClassification(to location: SIMD3<Float>, completionBlock: @escaping (SIMD3<Float>?, ARMeshClassification?) -> Void) {
-        guard let frame = arView.session.currentFrame else {
-            completionBlock(nil, nil)
-            return
-        }
+    // MARK: - Setup Methods
         
-        var meshAnchors = frame.anchors.compactMap({ $0 as? ARMeshAnchor })
-        
-        let cutoffDistance: Float = 4.0
-        meshAnchors.removeAll { distance($0.transform.position, location) > cutoffDistance }
-        meshAnchors.sort { distance($0.transform.position, location) < distance($1.transform.position, location) }
-        
-        DispatchQueue.global().async {
-            for anchor in meshAnchors {
-                for index in 0..<anchor.geometry.faces.count {
-                    let geometricCenterOfFace = anchor.geometry.centerOf(faceWithIndex: index)
-                    
-                    var centerLocalTransform = matrix_identity_float4x4
-                    centerLocalTransform.columns.3 = SIMD4<Float>(geometricCenterOfFace.0, geometricCenterOfFace.1, geometricCenterOfFace.2, 1)
-                    let centerWorldPosition = (anchor.transform * centerLocalTransform).position
-                    
-                    let distanceToFace = distance(centerWorldPosition, location)
-                    if distanceToFace <= 0.1 {
-                        let classification: ARMeshClassification = anchor.geometry.classificationOf(faceWithIndex: index)
-                        completionBlock(centerWorldPosition, classification)
-                        return
-                    }
-                }
-            }
+        /// Configures the AR view.
+        func setupARView() {
+            hapticGenerator = UIImpactFeedbackGenerator(style: .heavy)
+            hapticGenerator?.prepare()
             
-            completionBlock(nil, nil)
+            arView.session.delegate = self
+            arView.environment.sceneUnderstanding.options = [.occlusion, .physics]
+            arView.debugOptions.insert(.showSceneUnderstanding)
+            arView.renderOptions = [.disablePersonOcclusion, .disableDepthOfField, .disableMotionBlur]
+            arView.automaticallyConfigureSession = false
         }
-    }
     
+    /// Configures the AR session.
+        func setupARConfiguration() {
+            let configuration = ARWorldTrackingConfiguration()
+            configuration.sceneReconstruction = .meshWithClassification
+            configuration.environmentTexturing = .automatic
+            arView.session.run(configuration)
+        }
     
+    // MARK: - Other Methods
+    
+    /// Speaks the classification if needed based on certain conditions.
     func speakClassificationIfNeeded(_ classification: ARMeshClassification, distance: Float) {
         let currentTime = Date.timeIntervalSinceReferenceDate
         
@@ -166,6 +138,7 @@ class RealityViewController: UIViewController, ARSessionDelegate, SCNSceneRender
         }
     }
     
+    /// speak classification name
     func speakClassification(classification : String){
         let speechString = "\(classification)"
         let speechUtterance = AVSpeechUtterance(string: speechString)
@@ -175,7 +148,7 @@ class RealityViewController: UIViewController, ARSessionDelegate, SCNSceneRender
         lastSpokenClassification = classification
         lastSpeechTime = Date.timeIntervalSinceReferenceDate
     }
-    
+    /// speak classification name along with the distance
     func speakClassificationWithDistance(classification: String, distance : Float){
         let speechString = "\(classification) at \(Int(distance)) meters ahead."
         let speechUtterance = AVSpeechUtterance(string: speechString)
@@ -189,7 +162,7 @@ class RealityViewController: UIViewController, ARSessionDelegate, SCNSceneRender
     }
     
     
-    
+    /// creates AR session
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
         
         frameCounter += 1
@@ -202,9 +175,9 @@ class RealityViewController: UIViewController, ARSessionDelegate, SCNSceneRender
             let hitTransform = result.worldTransform
             let hitPosition = SCNVector3(hitTransform.columns.3.x, hitTransform.columns.3.y, hitTransform.columns.3.z)
             let distance = calculateDistance(cameraPosition, hitPosition)
+            
             print("Distance: \(distance)")
-//            distanceLabel.text = "\(distance)"
-//            distanceLabel.text = String(format: "%.2f", distance)
+            
             let roundedValue = round(distance * 10) / 10
             
             provideHapticFeedback(roundedValue)
@@ -219,6 +192,57 @@ class RealityViewController: UIViewController, ARSessionDelegate, SCNSceneRender
             }
         }
         
+        /// Calculates the distance between two points in meters.
+        func calculateDistance(_ point1: SCNVector3, _ point2: SCNVector3) -> Float {
+            let dx = point2.x - point1.x
+            let dy = point2.y - point1.y
+            let dz = point2.z - point1.z
+            let distanceInPoints = sqrt(dx*dx + dy*dy + dz*dz)
+                
+                let distanceInMeters = distanceInPoints * scale
+                
+                return distanceInMeters
+        }
+        
+        /// Finds the nearest face with a classification to a given location.
+        func nearbyFaceWithClassification(to location: SIMD3<Float>, completionBlock: @escaping (SIMD3<Float>?, ARMeshClassification?) -> Void) {
+            guard let frame = arView.session.currentFrame else {
+                completionBlock(nil, nil)
+                return
+            }
+            
+            var meshAnchors = frame.anchors.compactMap({ $0 as? ARMeshAnchor })
+            
+            let cutoffDistance: Float = 4.0
+            meshAnchors.removeAll { distance($0.transform.position, location) > cutoffDistance }
+            meshAnchors.sort { distance($0.transform.position, location) < distance($1.transform.position, location) }
+            
+            DispatchQueue.global().async {
+                for anchor in meshAnchors {
+                    for index in 0..<anchor.geometry.faces.count {
+                        let geometricCenterOfFace = anchor.geometry.centerOf(faceWithIndex: index)
+                        
+                        var centerLocalTransform = matrix_identity_float4x4
+                        centerLocalTransform.columns.3 = SIMD4<Float>(geometricCenterOfFace.0, geometricCenterOfFace.1, geometricCenterOfFace.2, 1)
+                        let centerWorldPosition = (anchor.transform * centerLocalTransform).position
+                        
+                        let distanceToFace = distance(centerWorldPosition, location)
+                        if distanceToFace <= 0.1 {
+                            let classification: ARMeshClassification = anchor.geometry.classificationOf(faceWithIndex: index)
+                            completionBlock(centerWorldPosition, classification)
+                            return
+                        }
+                    }
+                }
+                
+                completionBlock(nil, nil)
+            }
+        }
+        
+        
+        // MARK: - Model Creation Methods
+            
+        /// Creates a model entity for a given classification.
         func model(for classification: ARMeshClassification) -> ModelEntity {
             if let model = modelsForClassification[classification] {
                 model.transform = .identity
@@ -236,12 +260,14 @@ class RealityViewController: UIViewController, ARSessionDelegate, SCNSceneRender
             return model
         }
         
+        /// Creates a sphere model entity with a given radius and color.
         func sphere(radius: Float, color: UIColor) -> ModelEntity {
             let sphere = ModelEntity(mesh: .generateSphere(radius: radius), materials: [SimpleMaterial(color: color, isMetallic: false)])
             sphere.position.y = radius
             return sphere
         }
         
+        /// provides dynamic haptic feedback according to the distance
         func provideHapticFeedback(_ distance: Float) {
             let intensity = CGFloat(max(0, (1 - distance / 1.2)))
             if distance > 2 || intensity < 0.2 {

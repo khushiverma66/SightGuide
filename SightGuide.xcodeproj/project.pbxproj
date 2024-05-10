@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		26A476C32BDA5D10000709A8 /* cameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A476C22BDA5D10000709A8 /* cameraViewController.swift */; };
 		26A476C52BDA670B000709A8 /* offTrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A476C42BDA670B000709A8 /* offTrackViewController.swift */; };
 		26A476C72BDA6786000709A8 /* onTrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A476C62BDA6786000709A8 /* onTrackViewController.swift */; };
 		26A476C92BDA67B5000709A8 /* hapticGuideEndsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A476C82BDA67B5000709A8 /* hapticGuideEndsViewController.swift */; };
@@ -44,7 +43,6 @@
 
 /* Begin PBXFileReference section */
 		266714C82BDF59F800E8D715 /* VisionKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VisionKit.framework; path = System/Library/Frameworks/VisionKit.framework; sourceTree = SDKROOT; };
-		26A476C22BDA5D10000709A8 /* cameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cameraViewController.swift; sourceTree = "<group>"; };
 		26A476C42BDA670B000709A8 /* offTrackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = offTrackViewController.swift; sourceTree = "<group>"; };
 		26A476C62BDA6786000709A8 /* onTrackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onTrackViewController.swift; sourceTree = "<group>"; };
 		26A476C82BDA67B5000709A8 /* hapticGuideEndsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hapticGuideEndsViewController.swift; sourceTree = "<group>"; };
@@ -129,7 +127,6 @@
 				26A476C42BDA670B000709A8 /* offTrackViewController.swift */,
 				26A476C62BDA6786000709A8 /* onTrackViewController.swift */,
 				26A476C82BDA67B5000709A8 /* hapticGuideEndsViewController.swift */,
-				26A476C22BDA5D10000709A8 /* cameraViewController.swift */,
 				3FFCECB32BC3FE3600790386 /* Main.storyboard */,
 				3FFCECB62BC3FE3700790386 /* Assets.xcassets */,
 				3FFCECB82BC3FE3700790386 /* LaunchScreen.storyboard */,
@@ -300,7 +297,6 @@
 				3FFCECB22BC3FE3600790386 /* ViewController.swift in Sources */,
 				ED0E81282BE41C8A0020EC52 /* coachingOverlay.swift in Sources */,
 				ED0E812A2BE41CA60020EC52 /* Extensions.swift in Sources */,
-				26A476C32BDA5D10000709A8 /* cameraViewController.swift in Sources */,
 				3FFCECAE2BC3FE3600790386 /* AppDelegate.swift in Sources */,
 				3FFCECB02BC3FE3600790386 /* SceneDelegate.swift in Sources */,
 				ED0E81262BE41C2E0020EC52 /* realityViewController.swift in Sources */,

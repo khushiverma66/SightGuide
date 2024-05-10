@@ -145,28 +145,22 @@ class RealityViewController: UIViewController, ARSessionDelegate, SCNSceneRender
             return
         }
         guard let symbolName = classification.sfSymbolName else {
-                return
-            }
+            return
+        }
         
     
         
         if currentTime - lastSpeechTime >= speechDelay {
             let classificationName = classification.description
             
-            
             if classificationName != lastSpokenClassification {
-                
-                
                 print(classificationName)
                 nspeak(classification: classificationName)
                 
             } else {
                 if currentTime - lastSpeechTime >= 2 {
-                   
                     nspeak(classification: classificationName, distance : distance)
                 }
-                
-                
             }
         }
     }
@@ -233,17 +227,16 @@ class RealityViewController: UIViewController, ARSessionDelegate, SCNSceneRender
 //            distanceLabel.text = String(format: "%.2f", distance)
             let roundedValue = round(distance * 10) / 10
             
-            
             provideHapticFeedback(roundedValue)
             
             if frameCounter % 17 == 0 {
-                            nearbyFaceWithClassification(to: result.worldTransform.position) { _, classification in
-                                if let classification = classification {
-                                    print("Classification: \(classification.description)")
-                                    self.speakClassificationIfNeeded(classification, distance: distance)
-                                }
-                            }
-                        }
+                nearbyFaceWithClassification(to: result.worldTransform.position) { _, classification in
+                    if let classification = classification {
+                        print("Classification: \(classification.description)")
+                        self.speakClassificationIfNeeded(classification, distance: distance)
+                    }
+                }
+            }
         }
         
         func model(for classification: ARMeshClassification) -> ModelEntity {
@@ -281,8 +274,6 @@ class RealityViewController: UIViewController, ARSessionDelegate, SCNSceneRender
             else{
                 hapticGenerator?.impactOccurred(intensity: intensity)
             }
-            
-            
         }
     }
 }

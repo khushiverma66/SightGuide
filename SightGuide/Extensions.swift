@@ -1,10 +1,3 @@
-/*
-See LICENSE folder for this sample’s licensing information.
-
-Abstract:
-Helper functions and convenience extensions for system types.
-*/
-
 import ARKit
 import RealityKit
 
@@ -45,17 +38,17 @@ extension ARMeshClassification {
     }
     
     var sfSymbolName: String? {
-            switch self {
-            case .ceiling: return "chevron.up.circle.fill"
-            case .door: return "door.fill"
-            case .floor: return "square.fill"
-            case .seat: return "person.3.fill"
-            case .table: return "tablecells.fill"
-            case .wall: return "rectangle.fill"
-            case .window: return "rectangle.fill.on.rectangle.angled.fill"
-            default: return nil
-            }
+        switch self {
+        case .ceiling: return "chevron.up.circle.fill"
+        case .door: return "door.fill"
+        case .floor: return "square.fill"
+        case .seat: return "person.3.fill"
+        case .table: return "tablecells.fill"
+        case .wall: return "rectangle.fill"
+        case .window: return "rectangle.fill.on.rectangle.angled.fill"
+        default: return nil
         }
+    }
     
     
 }

@@ -20,7 +20,6 @@ extension RealityViewController: ARCoachingOverlayViewDelegate {
     }
 
     func setupCoachingOverlay() {
-        // Set up coaching view
         coachingOverlay.session = arView.session
         coachingOverlay.delegate = self
         

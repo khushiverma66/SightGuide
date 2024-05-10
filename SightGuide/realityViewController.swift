@@ -144,7 +144,7 @@ class RealityViewController: UIViewController, ARSessionDelegate, SCNSceneRender
             
             return
         }
-        guard let symbolName = classification.sfSymbolName else {
+        guard classification.sfSymbolName != nil else {
             return
         }
         
